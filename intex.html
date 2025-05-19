@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compra y Venta de Carros</title>
+  <style>
+    /* CSS - Estilo */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+    }
+
+    header {
+      background: #333;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    .formulario, .listado {
+      background: white;
+      padding: 1rem;
+      margin-bottom: 2rem;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #ccc;
+    }
+
+    input, button {
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    button {
+      background: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .carCard {
+      background: #e9ecef;
+      padding: 1rem;
+      margin-top: 1rem;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Compra y Venta de Carros</h1>
+  </header>
+
+  <main>
+    <section class="formulario">
+      <h2>Publicar un Auto</h2>
+      <form id="carForm">
+        <input type="text" id="marca" placeholder="Marca" required />
+        <input type="text" id="modelo" placeholder="Modelo" required />
+        <input type="number" id="anio" placeholder="Año" required />
+        <input type="number" id="precio" placeholder="Precio" required />
+        <button type="submit">Publicar</button>
+      </form>
+    </section>
+
+    <section class="listado">
+      <h2>Autos en Venta</h2>
+      <div id="carList"></div>
+    </section>
+  </main>
+
+  <script>
+    // JavaScript - Lógica del sitio
+    document.getElementById('carForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const marca = document.getElementById('marca').value;
+      const modelo = document.getElementById('modelo').value;
+      const anio = document.getElementById('anio').value;
+      const precio = document.getElementById('precio').value;
+
+      const carList = document.getElementById('carList');
+      const carCard = document.createElement('div');
+      carCard.classList.add('carCard');
+      carCard.innerHTML = `
+        <h3>${marca} ${modelo}</h3>
+        <p>Año: ${anio}</p>
+        <p>Precio: $${precio}</p>
+      `;
+
+      carList.appendChild(carCard);
+
+      document.getElementById('carForm').reset();
+    });
+  </script>
+</body>
+</html>
